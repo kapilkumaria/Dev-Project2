@@ -1,3 +1,5 @@
+
+
 resource "aws_eip" "elastic_ip" {
   count = var.az_count
   vpc   = true
