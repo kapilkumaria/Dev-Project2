@@ -1,10 +1,5 @@
-variable "az_count" {
+variable "az_count_v" {
     default = 2
-}
-
-
-variable "eip_for_nat" {
-    default = "kapil_eip"
 }
 
 

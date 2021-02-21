@@ -33,6 +33,12 @@ variable "subnet_third_octet" {
   default     = "192"
 }
 
+variable "subnet_identifiers" {
+  description = "List of AZs"
+  type        = list
+  default     = ["a", "b", "c"]
+}
+
 variable "peers" {
   description = "List of Maps"
   type        = "list"
