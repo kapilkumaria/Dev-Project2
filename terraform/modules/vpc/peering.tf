@@ -1,6 +1,6 @@
 resource "aws_vpc_peering_connection" "peers" {
   count         = "${ length(var.peers) }"
-  vpc_id        = "${aws_vpc.lpg.id}"
+  vpc_id        = "${aws_vpc.vpg.id}"
   peer_vpc_id   = "${var.peers[count.index]["vpc"]}"
   peer_owner_id = "${var.peers[count.index]["owner"]}"
   peer_region   = "${var.peers[count.index]["region"]}"
@@ -12,9 +12,16 @@ resource "aws_vpc_peering_connection" "peers" {
   }
 }
 
-resource "aws_route" "peers" {
+resource "aws_route" "peers1" {
   count                     = "${ length(var.peers) }"
-  route_table_id            = "${aws_route_table.route_table.id}"
+  route_table_id            = "${aws_route_table.private-subnet-route-table_v.*.id}"
+  destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers[count.index].id}"
+}
+
+resource "aws_route" "peers2" {
+  count                     = "${ length(var.peers) }"
+  route_table_id            = aws_route_table.private-subnet-route-table_i.id
   destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
   vpc_peering_connection_id = "${aws_vpc_peering_connection.peers[count.index].id}"
 }

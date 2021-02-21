@@ -16,4 +16,6 @@ variable "instance_type" {
 
 variable "instance_az" {}
 variable "web_sg" {}
+variable "pri-subnet" {}
+
 
