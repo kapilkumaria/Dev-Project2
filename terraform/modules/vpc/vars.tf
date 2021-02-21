@@ -38,4 +38,3 @@ variable "peers" {
   type        = "list"
   default     = []
 }
-
