@@ -33,7 +33,7 @@ resource "aws_vpc_peering_connection_accepter" "peer1" {
 }          
 
 
-resource "aws_vpc_peering_connection_accepter" "peer1" {
+resource "aws_vpc_peering_connection_accepter" "peer2" {
   provider                  = "aws.ireland"
   vpc_peering_connection_id = aws_vpc_peering_connection.peers[1].id
   auto_accept               = true

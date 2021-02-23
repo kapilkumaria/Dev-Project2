@@ -44,20 +44,20 @@ variable "subnet_identifiers" {
   default     = ["a", "b", "c"]
 }
 
-variable "peers" {
-  description = "List of Maps"
-  type        = "list"
-  default     = []
-}
+// variable "peers" {
+//   description = "List of Maps"
+//   type        = "list"
+//   default     = []
+// }
 
 
 ###########################################################################################################
 # variables from module - eip
 ###########################################################################################################
 
-variable "az_count_v" {
-    default = 2
-}
+// variable "az_count_v" {
+//     default = 2
+// }
 
 
 ###########################################################################################################
@@ -106,4 +106,56 @@ variable "db_sg" {}
 variable "pri_subnet_virginia" {}
 variable "pri_subnet_ireland" {}
 
+
 ###########################################################################################################
+# variables for peering vpc information
+###########################################################################################################
+
+
+variable "peers" {
+  description   = "List of Maps"
+  type          = "list"
+  default       = [{
+#    name        = "databases"
+    region      = {}
+#    owner       = "123456789"
+    vpc         = {}
+    ip_range    = {}
+    auto_accept = "true"
+    side        = "Requestor"
+  },
+  {
+#    name        = "databases"
+    region      = {}
+#    owner       = "123456789"
+    vpc         = {}
+    ip_range    = {}
+    auto_accept = "true"
+    side        = "Requestor"
+  }]
+}   
+                  
+                  
+                  
+                  
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

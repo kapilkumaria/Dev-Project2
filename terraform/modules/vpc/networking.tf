@@ -109,7 +109,7 @@ resource "aws_subnet" "utility-subnet_v" {
 resource "aws_subnet" "private-subnet_i" {
   provider          = "aws.ireland"
   vpc_id            = aws_vpc.ipg.id
-  cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet + (count.index * 2)}.0/23"
+  cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet}.0/23"
   availability_zone = "${var.region}${var.subnet_identifiers[0]}"
 
   tags = map(
@@ -206,7 +206,7 @@ resource "aws_route_table" "private-subnet-route-table_i" {
 
 # Creating routes and adding them to private route table
 
-resource "aws_route" "private-subnet-default_route_v" {
+resource "aws_route" "private-subnet-default_route_i" {
   provider               = "aws.ireland"
   route_table_id         = aws_route_table.private-subnet-route-table_i.id
   destination_cidr_block = "0.0.0.0/0"

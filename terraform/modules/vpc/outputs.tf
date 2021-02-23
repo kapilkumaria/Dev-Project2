@@ -14,9 +14,9 @@ output "vpc_cidr_virginia" {
     value = aws_vpc.vpg.cidr_block
 }
 
-output "vpc_id_virginia" {
-    value = aws_vpc.vpg.id
-}
+// output "vpc_id_virginia" {
+//     value = aws_vpc.vpg.id
+// }
 
 output "igw_id_virginia" {
     value = aws_internet_gateway.internet_gateway_v.id
@@ -64,9 +64,9 @@ output "vpc_cidr_ireland" {
     value = aws_vpc.ipg.cidr_block
 }
 
-output "vpc_id_ireland" {
-    value = aws_vpc.ipg.id
-}
+// output "vpc_id_ireland" {
+//     value = aws_vpc.ipg.id
+// }
 
 output "igw_id_ireland" {
     value = aws_internet_gateway.internet_gateway_i.id
@@ -91,5 +91,27 @@ output "subnet_ids_private_ireland" {
 output "route_table_id_private_ireland" {
     value = aws_route_table.private-subnet-route-table_i.id
 }
+
+
+output "peer_region_requestor" {
+    value = ""
+}
+
+
+output "peer_vpc_requestor" {
+    value = "aws_vpc.ipg.id"
+}
+
+
+output "peer_ip_range_requestor" {
+    value = "aws_vpc.ipg.cidr_block"
+}
+
+
+
+
+
+
+
 
 ###########################################################################################################
