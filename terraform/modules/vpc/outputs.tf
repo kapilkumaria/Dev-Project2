@@ -85,7 +85,7 @@ output "subnet_id_utility_ireland" {
 }
 
 output "subnet_ids_private_ireland" {
-    value = aws_subnet.private-subnet_i.arn
+    value = aws_subnet.private-subnet_i.id
 }
 
 output "route_table_id_private_ireland" {

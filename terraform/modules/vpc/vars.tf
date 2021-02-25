@@ -18,6 +18,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "region_i" {
+  description = "AWS Region"
+  default     = "eu-west-1"
+}
+
 variable "engineering_domain" {
   description = "DNS zone"
   default     = "example.net"
@@ -68,4 +73,7 @@ variable "elastic_ip_i" {}
 // }
 
 
-variable "peers" {}
+# variable "peers" {
+#   description = "Number of subnets / Availability zones to use"
+#   default     = "2"
+# }

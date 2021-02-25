@@ -6,14 +6,15 @@
 # Requester's side of the connection
 
 resource "aws_vpc_peering_connection" "peers_connections" {
-  count         = "${length(var.peers)}"
+  #count         = "${length(var.peers)}"
   vpc_id        = aws_vpc.vpg.id
+  peer_vpc_id   = aws_vpc.ipg.id
   // peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
   // peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
   // peer_region   = "${lookup(var.peers[count.index],"region")}"
-  peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
-  peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
-  peer_region   = "${lookup(var.peers[count.index],"region")}"
+  
+  #peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
+  #peer_region   = "${lookup(var.peers[count.index],"region")}"
   // peer_vpc_id   = lookup(var.peers.[vpc][count.index])
   // peer_owner_id = lookup(var.peers.[owner][count.index])
   // peer_region   = lookup(var.peers.[region][count.index])
@@ -36,7 +37,7 @@ resource "aws_vpc_peering_connection" "peers_connections" {
 
 resource "aws_vpc_peering_connection_accepter" "peer1" {
   
-  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections[0].id
+  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections.id
   auto_accept               = true
 
   tags = {
@@ -45,15 +46,15 @@ resource "aws_vpc_peering_connection_accepter" "peer1" {
 }          
 
 
-resource "aws_vpc_peering_connection_accepter" "peer2" {
-  provider                  = "aws.ireland"
-  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections[1].id
-  auto_accept               = true
+# resource "aws_vpc_peering_connection_accepter" "peer2" {
+#   provider                  = "aws.ireland"
+#   vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections[1].id
+#   auto_accept               = true
 
-  tags = {
-    Side = "Accepter"
-  }
-}          
+#   tags = {
+#     Side = "Accepter"
+#   }
+# }          
 
 
 
@@ -62,20 +63,20 @@ resource "aws_vpc_peering_connection_accepter" "peer2" {
 ######################################################################################################################################
 
 resource "aws_route" "peers1" {
-  count                     = "${ length(var.peers) }"
-  route_table_id            = "${aws_route_table.private-subnet-route-table_v.*.id}"
-  destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers_connections[count.index].id}"
+  #count                     = var.az_count_v
+  route_table_id            = aws_route_table.private-subnet-route-table_v.id
+  destination_cidr_block    = aws_vpc.ipg.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections.id
   depends_on                = [aws_route_table.private-subnet-route-table_v]
 }
 
 
 resource "aws_route" "peers2" {
   provider                  = "aws.ireland"
-  count                     = "${ length(var.peers) }"
+  #count                     = "${ length(var.peers) }"
   route_table_id            = aws_route_table.private-subnet-route-table_i.id
-  destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers_connections[count.index].id}"
+  destination_cidr_block    = aws_vpc.vpg.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections.id
   depends_on                = [aws_route_table.private-subnet-route-table_i]
 }
 

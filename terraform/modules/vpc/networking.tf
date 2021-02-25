@@ -111,7 +111,7 @@ resource "aws_subnet" "private-subnet_i" {
   provider          = "aws.ireland"
   vpc_id            = aws_vpc.ipg.id
   cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet}.0/23"
-  availability_zone = "${var.region}${var.subnet_identifiers[0]}"
+  availability_zone = "${var.region_i}${var.subnet_identifiers[0]}"
 
   tags = map(
       "SubnetType", "Private"
@@ -127,7 +127,7 @@ resource "aws_subnet" "utility-subnet_i" {
   provider          = "aws.ireland"
   vpc_id            = aws_vpc.ipg.id
   cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet + 14}.0/27"
-  availability_zone = "${var.region}${var.subnet_identifiers[0]}"
+  availability_zone = "${var.region_i}${var.subnet_identifiers[0]}"
 
   tags = map(
       "SubnetType", "Utility"

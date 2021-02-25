@@ -1,5 +1,5 @@
 variable "ami_virginia" {
-    default = "ami-02e44367276fe7adc"
+    default = "ami-03d315ad33b9d49c4"
 }
 
 variable "ami_ireland" {
