@@ -17,9 +17,9 @@ module "vpc" {
     elastic_ip_i        = module.eip.eip_id_i
     #peers               = var.peers
     #private-subnet-default_route_i  = var.private-subnet-default_route_i
-#    peers.region     = module.vpc.peer_region_requestor
-    #peers.vpc        = module.vpc.peer_vpc_requestor
-    #peers.ip_range   = module.vpc.peer_ip_range_requestor
+    #peers.region     = module.vpc.peer_region_requestor
+    peers.vpc        = module.vpc.peer_vpc_requestor
+    peers.ip_range   = module.vpc.peer_ip_range_requestor
 }
 
 

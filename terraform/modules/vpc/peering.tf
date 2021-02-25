@@ -6,7 +6,7 @@
 # Requester's side of the connection
 
 resource "aws_vpc_peering_connection" "peers_connections" {
-  count         = length(var.peers)
+  count         = "${length(var.peers)}"
   vpc_id        = aws_vpc.vpg.id
   // peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
   // peer_owner_id = "${lookup(var.peers[count.index],"owner")}"

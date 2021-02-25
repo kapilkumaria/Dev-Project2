@@ -93,9 +93,9 @@ output "route_table_id_private_ireland" {
 }
 
 
-output "peer_region_requestor" {
-    value = ""
-}
+// output "peer_region_requestor" {
+//     value = ""
+// }
 
 
 output "peer_vpc_requestor" {
