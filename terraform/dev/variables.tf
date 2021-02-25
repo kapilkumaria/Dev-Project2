@@ -113,27 +113,28 @@ variable "instance_type_ireland" {
 
 
 variable "peers" {
-  description   = "List of Maps"
-  type          = "list"
-  default       = [{
-#    name        = "databases"
-    region      = {}
-#    owner       = "123456789"
-    vpc         = {}
-    ip_range    = {}
-    auto_accept = "true"
-    side        = "Requestor"
-  },
-  {
-#    name        = "databases"
-    region      = {}
-#    owner       = "123456789"
-    vpc         = {}
-    ip_range    = {}
-    auto_accept = "true"
-    side        = "Requestor"
-  }]
-}   
+   description   = "List of Maps"
+  # type        = list(map(string))
+   type          = "list"
+   default       = [{
+ #    name        = "databases"
+     region      = {}
+ #    owner       = "123456789"
+     vpc         = {}
+     ip_range    = {}
+     auto_accept = "true"
+     side        = "Requestor"
+   },
+   {
+ #    name        = "databases"
+     region      = {}
+ #    owner       = "123456789"
+     vpc         = {}
+     ip_range    = {}
+     auto_accept = "true"
+     side        = "Requestor"
+   }]
+ }   
                   
                   
                   

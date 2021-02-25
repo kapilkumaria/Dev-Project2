@@ -6,11 +6,11 @@
 # Requester's side of the connection
 
 resource "aws_vpc_peering_connection" "peers_connections" {
-  count         = "${ length(var.peers) }"
-  vpc_id        = "${aws_vpc.vpg.id}"
-  peer_vpc_id   = element(var.peers[count.index]["vpc"])
-  peer_owner_id = var.peers[count.index]["owner"]
-  peer_region   = var.peers[count.index]["region"]
+  count         = length(var.peers)
+  vpc_id        = aws_vpc.vpg.id
+  peer_vpc_id   = lookup(var.peers.vpc[count.index], "vpc")
+  peer_owner_id = lookup(var.peers.owner[count.index],"owner")
+  peer_region   = lookup(var.peers.region[count.index],"region")
   auto_accept   = false
 
   tags = {
@@ -19,7 +19,7 @@ resource "aws_vpc_peering_connection" "peers_connections" {
   }
 }
 
-
+#   name    = "${lookup(aws_acm_certificate.cert.domain_validation_options[count.index], "resource_record_name")}"
 # Accepter's side of the connection
 
 resource "aws_vpc_peering_connection_accepter" "peer1" {
