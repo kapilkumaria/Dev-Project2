@@ -1,5 +1,5 @@
 output "eip_ids_v" {
-    value = aws_eip.elastic_ip_v.*.id
+    value = aws_eip.elastic_ip_v.id
 }
 
 

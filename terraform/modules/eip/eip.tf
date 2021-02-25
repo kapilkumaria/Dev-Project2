@@ -18,7 +18,7 @@ provider "aws" {
 
 
 resource "aws_eip" "elastic_ip_v" {
-  count   = var.az_count_v
+  #count   = var.az_count_v
   vpc     = true
 }
 

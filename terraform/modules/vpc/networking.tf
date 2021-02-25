@@ -50,14 +50,21 @@ resource "aws_internet_gateway" "internet_gateway_i" {
 # Creating 3 nat gateways for private subnets - 2 in virginia (us-east-1) & 3rd in ireland (eu-west-1 )
 ###############################################################################################################################
 
-######
+###############################################################################################################################
+# Creating 2 nat gateways for private subnets - 1st in virginia (us-east-1) & 2nd in ireland (eu-west-1 )
+###############################################################################################################################
+
+# resource "aws_nat_gateway" "nat_gateway_v" {
+#   count           = var.az_count_v
+#   allocation_id   = element(var.elastic_ip_v,count.index)
+#   subnet_id       = element(aws_subnet.utility-subnet_v[*].id,count.index)
+# }
 
 resource "aws_nat_gateway" "nat_gateway_v" {
-  count           = var.az_count_v
-  allocation_id   = element(var.elastic_ip_v,count.index)
-  subnet_id       = element(aws_subnet.utility-subnet_v[*].id,count.index)
+  #count           = var.az_count_v
+  allocation_id   = var.elastic_ip_v
+  subnet_id       = aws_subnet.utility-subnet_v[0].id
 }
-
 
 resource "aws_nat_gateway" "nat_gateway_i" {
   provider        = "aws.ireland"
@@ -165,11 +172,18 @@ resource "aws_route" "default_route_v" {
 }
 
 
+# resource "aws_route" "private-subnet-default_route_v" {
+#   count                  = var.az_count_v
+#   route_table_id         = element(aws_route_table.private-subnet-route-table_v.*.id,count.index)
+#   destination_cidr_block = "0.0.0.0/0"
+#   nat_gateway_id         = element(aws_nat_gateway.nat_gateway_v.*.id,count.index)
+# }
+
 resource "aws_route" "private-subnet-default_route_v" {
-  count                  = var.az_count_v
-  route_table_id         = element(aws_route_table.private-subnet-route-table_v.*.id,count.index)
+  #count                  = var.az_count_v
+  route_table_id         = aws_route_table.private-subnet-route-table_v.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = element(aws_nat_gateway.nat_gateway_v.*.id,count.index)
+  nat_gateway_id         = aws_nat_gateway.nat_gateway_v.id
 }
 
 ###########################################################peering connection and peering routes are in "peering.tf"
