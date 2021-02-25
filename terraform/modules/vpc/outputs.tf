@@ -22,9 +22,9 @@ output "igw_id_virginia" {
     value = aws_internet_gateway.internet_gateway_v.id
 }
 
-output "elastic_ip_ids_virginia" {
-    value = aws_eip.elastic_ip_v.*.id
-}
+// output "elastic_ip_ids_virginia" {
+//     value = aws_eip.elastic_ip_v.*.id
+// }
 
 output "nat_gateway_ids_virginia" {
     value = aws_nat_gateway.nat_gateway_v.*.id
@@ -72,9 +72,9 @@ output "igw_id_ireland" {
     value = aws_internet_gateway.internet_gateway_i.id
 }
 
-output "elastic_ip_id_ireland" {
-    value = aws_eip.elastic_ip_i.id
-}
+// output "elastic_ip_id_ireland" {
+//     value = aws_eip.elastic_ip_i.id
+// }
 
 output "nat_gateway_id_ireland" {
     value = aws_nat_gateway.nat_gateway_i.id

@@ -1,26 +1,8 @@
-output "eip_id" {
-    value = aws_eip.lb.id
-}
-
-output "eip_instance" {
-    value = aws_eip.lb.instance
+output "eip_ids_v" {
+    value = aws_eip.elastic_ip_v.*.id
 }
 
 
-output "eip_private_ip" {
-    value = aws_eip.lb.private_ip
+output "eip_id_i" {
+    value = aws_eip.elastic_ip_i.id
 }
-
-output "eip_public_ip" {
-    value = aws_eip.lb.public_ip
-}
-
-output "eip_private_dns" {
-    value = aws_eip.lb.private_dns
-}
-
-output "eip_network_interface" {
-    value = aws_eip.lb.network_interface
-}
-
-

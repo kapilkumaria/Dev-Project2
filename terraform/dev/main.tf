@@ -13,6 +13,8 @@ module "vpc" {
     subnet_second_octet = var.subnet_second_octet
     subnet_third_octet  = var.subnet_third_octet
     subnet_identifiers  = var.subnet_identifiers
+    elastic_ip_v        = module.eip.eip_ids_v
+    elastic_ip_i        = module.eip.eip_id_i
     #peers               = var.peers
 #    peers.region     = module.vpc.peer_region_requestor
 #    peers.vpc        = module.vpc.peer_vpc_requestor

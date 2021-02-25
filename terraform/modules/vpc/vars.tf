@@ -39,6 +39,11 @@ variable "subnet_identifiers" {
   default     = ["a", "b", "c"]
 }
 
+
+variable "elastic_ip_v" {}
+variable "elastic_ip_i" {}
+
+
 // variable "peers" {
 //   description   = "List of Maps"
 //   type          = "list"

@@ -76,8 +76,8 @@ variable "myip" {
     default = "66.222.146.176/32"
 }
 
-variable "vpc_id_virginia" {}
-variable "vpc_id_ireland" {}
+#variable "vpc_id_virginia" {}
+#variable "vpc_id_ireland" {}
 
 
 ###########################################################################################################
@@ -101,10 +101,10 @@ variable "instance_type_ireland" {
 }
 
 
-variable "web_sg" {}
-variable "db_sg" {}
-variable "pri_subnet_virginia" {}
-variable "pri_subnet_ireland" {}
+#variable "web_sg" {}
+#variable "db_sg" {}
+#variable "pri_subnet_virginia" {}
+#variable "pri_subnet_ireland" {}
 
 
 ###########################################################################################################
