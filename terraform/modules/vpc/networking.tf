@@ -54,14 +54,14 @@ resource "aws_internet_gateway" "internet_gateway_i" {
 
 resource "aws_nat_gateway" "nat_gateway_v" {
   count           = var.az_count_v
-  allocation_id   = element(var.elastic_ip_v[*].id,count.index)
+  allocation_id   = element(var.elastic_ip_v,count.index)
   subnet_id       = element(aws_subnet.utility-subnet_v[*].id,count.index)
 }
 
 
 resource "aws_nat_gateway" "nat_gateway_i" {
   provider        = "aws.ireland"
-  allocation_id   = var.elastic_ip_i.id
+  allocation_id   = var.elastic_ip_i
   subnet_id       = aws_subnet.utility-subnet_i.id
 }
 

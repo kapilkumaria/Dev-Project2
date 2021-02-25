@@ -35,7 +35,7 @@ output "subnet_ids_utility_virginia" {
 }
 
 output "subnet_ids_private_virginia" {
-    value = aws_subnet.private-subnet_v.*.arn
+    value = aws_subnet.private-subnet_v.*.id
 }
 
 output "route_table_ids_utility_virginia" {

@@ -20,7 +20,7 @@ provider "aws" {
 resource "aws_instance" "ec2_virginia" {
     ami                        = var.ami_virginia  
     instance_type              = var.instance_type_virginia
-    vpc_security_group_ids     = var.web_sg
+    vpc_security_group_ids     = [var.web_sg]
     subnet_id                  = var.pri_subnet_virginia
 
     tags = {
@@ -33,7 +33,7 @@ resource "aws_instance" "ec2_ireland" {
     provider                   = "aws.ireland"
     ami                        = var.ami_ireland
     instance_type              = var.instance_type_ireland
-    vpc_security_group_ids     = var.db_sg
+    vpc_security_group_ids     = [var.db_sg]
     subnet_id                  = var.pri_subnet_ireland
 
     tags = {

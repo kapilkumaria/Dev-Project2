@@ -5,12 +5,12 @@
 
 # Requester's side of the connection
 
-resource "aws_vpc_peering_connection" "peers" {
+resource "aws_vpc_peering_connection" "peers_connections" {
   count         = "${ length(var.peers) }"
   vpc_id        = "${aws_vpc.vpg.id}"
-  peer_vpc_id   = "${var.peers[count.index]["vpc"]}"
-  peer_owner_id = "${var.peers[count.index]["owner"]}"
-  peer_region   = "${var.peers[count.index]["region"]}"
+  peer_vpc_id   = element(var.peers[count.index]["vpc"])
+  peer_owner_id = var.peers[count.index]["owner"]
+  peer_region   = var.peers[count.index]["region"]
   auto_accept   = false
 
   tags = {
@@ -24,7 +24,7 @@ resource "aws_vpc_peering_connection" "peers" {
 
 resource "aws_vpc_peering_connection_accepter" "peer1" {
   
-  vpc_peering_connection_id = aws_vpc_peering_connection.peers[0].id
+  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections[0].id
   auto_accept               = true
 
   tags = {
@@ -35,7 +35,7 @@ resource "aws_vpc_peering_connection_accepter" "peer1" {
 
 resource "aws_vpc_peering_connection_accepter" "peer2" {
   provider                  = "aws.ireland"
-  vpc_peering_connection_id = aws_vpc_peering_connection.peers[1].id
+  vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections[1].id
   auto_accept               = true
 
   tags = {
@@ -53,8 +53,8 @@ resource "aws_route" "peers1" {
   count                     = "${ length(var.peers) }"
   route_table_id            = "${aws_route_table.private-subnet-route-table_v.*.id}"
   destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers[count.index].id}"
-  depends_on                = [aws_route_table.route_table_v]
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers_connections[count.index].id}"
+  depends_on                = [aws_route_table.private-subnet-route-table_v]
 }
 
 
@@ -63,8 +63,8 @@ resource "aws_route" "peers2" {
   count                     = "${ length(var.peers) }"
   route_table_id            = aws_route_table.private-subnet-route-table_i.id
   destination_cidr_block    = "${var.peers[count.index]["ip_range"]}"
-  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers[count.index].id}"
-  depends_on                = [aws_route_table.route_table_i]
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.peers_connections[count.index].id}"
+  depends_on                = [aws_route_table.private-subnet-route-table_i]
 }
 
 

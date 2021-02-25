@@ -37,7 +37,7 @@ resource "aws_security_group" "websg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.myip
+    cidr_blocks = [var.myip]
   }
 
   egress {
@@ -74,7 +74,7 @@ resource "aws_security_group" "dbsg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.myip
+    cidr_blocks = [var.myip]
   }
 
   egress {

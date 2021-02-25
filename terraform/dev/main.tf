@@ -15,7 +15,8 @@ module "vpc" {
     subnet_identifiers  = var.subnet_identifiers
     elastic_ip_v        = module.eip.eip_ids_v
     elastic_ip_i        = module.eip.eip_id_i
-    #peers               = var.peers
+    peers               = var.peers
+    #private-subnet-default_route_i  = var.private-subnet-default_route_i
 #    peers.region     = module.vpc.peer_region_requestor
 #    peers.vpc        = module.vpc.peer_vpc_requestor
 #    peers.ip_range   = module.vpc.peer_ip_range_requestor
@@ -46,7 +47,7 @@ module "ec2" {
     instance_type_ireland   = var.instance_type_ireland
     web_sg                  = module.sg.web_sg_id
     db_sg                   = module.sg.db_sg_id
-    pri_subnet_virginia     = module.vpc.subnet_ids_private_virginia
+    pri_subnet_virginia     = module.vpc.subnet_ids_private_virginia[0]
     pri_subnet_ireland      = module.vpc.subnet_ids_private_ireland
 }
 
