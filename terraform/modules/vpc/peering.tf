@@ -8,9 +8,21 @@
 resource "aws_vpc_peering_connection" "peers_connections" {
   count         = length(var.peers)
   vpc_id        = aws_vpc.vpg.id
-  peer_vpc_id   = lookup(var.peers.vpc[count.index], "vpc")
-  peer_owner_id = lookup(var.peers.owner[count.index],"owner")
-  peer_region   = lookup(var.peers.region[count.index],"region")
+  // peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
+  // peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
+  // peer_region   = "${lookup(var.peers[count.index],"region")}"
+  peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
+  peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
+  peer_region   = "${lookup(var.peers[count.index],"region")}"
+  // peer_vpc_id   = lookup(var.peers.[vpc][count.index])
+  // peer_owner_id = lookup(var.peers.[owner][count.index])
+  // peer_region   = lookup(var.peers.[region][count.index])
+  // peer_vpc_id   = lookup(var.peers.[vpc][count.index])
+  // peer_owner_id = lookup(var.peers.[owner][count.index])
+  // peer_region   = lookup(var.peers.[region][count.index])
+  // peer_vpc_id   = lookup(var.peers.vpc, count.index)
+  // peer_owner_id = lookup(var.peers.owner, count.index)
+  // peer_region   = lookup(var.peers.region, count.index)
   auto_accept   = false
 
   tags = {
