@@ -110,13 +110,13 @@ output "web_sg_description" {
     value = module.sg.web_sg_description
 }
 
-output "web_sg_ingress" {
-    value = module.sg.web_sg_ingress
-}
+# output "web_sg_ingress" {
+#     value = module.sg.web_sg_ingress
+# }
 
-output "web_sg_egress" {
-    value = module.sg.web_sg_egress
-}
+# output "web_sg_egress" {
+#     value = module.sg.web_sg_egress
+# }
 
 output "db_sg_id" {
     value = module.sg.db_sg_id
@@ -134,13 +134,13 @@ output "db_sg_description" {
     value = module.sg.db_sg_description
 }
 
-output "db_sg_ingress" {
-    value = module.sg.db_sg_ingress
-}
+# output "db_sg_ingress" {
+#     value = module.sg.db_sg_ingress
+# }
 
-output "db_sg_egress" {
-    value = module.sg.db_sg_egress
-}
+# output "db_sg_egress" {
+#     value = module.sg.db_sg_egress
+# }
 
 
 #####################################################################################################################
