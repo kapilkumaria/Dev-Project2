@@ -11,7 +11,7 @@ resource "aws_vpc_peering_connection" "peers_connections" {
   peer_vpc_id   = aws_vpc.ipg.id
   // peer_vpc_id   = "${lookup(var.peers[count.index],"vpc")}"
   // peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
-  // peer_region   = "${lookup(var.peers[count.index],"region")}"
+  peer_region   = "eu-west-1"
   
   #peer_owner_id = "${lookup(var.peers[count.index],"owner")}"
   #peer_region   = "${lookup(var.peers[count.index],"region")}"
@@ -36,7 +36,7 @@ resource "aws_vpc_peering_connection" "peers_connections" {
 # Accepter's side of the connection
 
 resource "aws_vpc_peering_connection_accepter" "peer1" {
-  
+  provider                  = "aws.ireland"
   vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections.id
   auto_accept               = true
 

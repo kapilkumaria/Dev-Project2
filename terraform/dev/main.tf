@@ -15,6 +15,7 @@ module "vpc" {
     subnet_identifiers  = var.subnet_identifiers
     elastic_ip_v        = module.eip.eip_ids_v
     elastic_ip_i        = module.eip.eip_id_i
+    
     #peers               = var.peers
     #private-subnet-default_route_i  = var.private-subnet-default_route_i
     #peers.region     = module.vpc.peer_region_requestor
@@ -49,7 +50,10 @@ module "ec2" {
     db_sg                   = module.sg.db_sg_id
     pri_subnet_virginia     = module.vpc.subnet_ids_private_virginia[0]
     pri_subnet_ireland      = module.vpc.subnet_ids_private_ireland
+    instance_profile        = module.iam.ec2_profile
 }
 
-
+module "iam" {
+   source                  = "../modules/iam" 
+}
 

@@ -258,3 +258,14 @@ resource "aws_vpc_dhcp_options_association" "lpg" {
 
 ###############################################################################################################################
 ###############################################################################################################################
+
+resource "aws_vpc_dhcp_options" "ipg_dhcp" {
+  domain_name           = "${var.env}.${var.engineering_domain}"
+  domain_name_servers   = ["AmazonProvidedDNS"]
+}
+
+
+# resource "aws_vpc_dhcp_options_association" "mpg" {
+#   vpc_id                = aws_vpc.ipg.id
+#   dhcp_options_id       = aws_vpc_dhcp_options.ipg_dhcp.id
+# }

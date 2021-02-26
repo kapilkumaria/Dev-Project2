@@ -20,3 +20,4 @@ variable "web_sg" {}
 variable "db_sg" {}
 variable "pri_subnet_virginia" {}
 variable "pri_subnet_ireland" {}
+variable  "instance_profile" {}
