@@ -47,18 +47,9 @@ resource "aws_internet_gateway" "internet_gateway_i" {
 
 
 ###############################################################################################################################
-# Creating 3 nat gateways for private subnets - 2 in virginia (us-east-1) & 3rd in ireland (eu-west-1 )
-###############################################################################################################################
-
-###############################################################################################################################
 # Creating 2 nat gateways for private subnets - 1st in virginia (us-east-1) & 2nd in ireland (eu-west-1 )
 ###############################################################################################################################
 
-# resource "aws_nat_gateway" "nat_gateway_v" {
-#   count           = var.az_count_v
-#   allocation_id   = element(var.elastic_ip_v,count.index)
-#   subnet_id       = element(aws_subnet.utility-subnet_v[*].id,count.index)
-# }
 
 resource "aws_nat_gateway" "nat_gateway_v" {
   #count           = var.az_count_v
@@ -172,15 +163,8 @@ resource "aws_route" "default_route_v" {
 }
 
 
-# resource "aws_route" "private-subnet-default_route_v" {
-#   count                  = var.az_count_v
-#   route_table_id         = element(aws_route_table.private-subnet-route-table_v.*.id,count.index)
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id         = element(aws_nat_gateway.nat_gateway_v.*.id,count.index)
-# }
 
 resource "aws_route" "private-subnet-default_route_v" {
-  #count                  = var.az_count_v
   route_table_id         = aws_route_table.private-subnet-route-table_v.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway_v.id
@@ -259,13 +243,3 @@ resource "aws_vpc_dhcp_options_association" "lpg" {
 ###############################################################################################################################
 ###############################################################################################################################
 
-resource "aws_vpc_dhcp_options" "ipg_dhcp" {
-  domain_name           = "${var.env}.${var.engineering_domain}"
-  domain_name_servers   = ["AmazonProvidedDNS"]
-}
-
-
-# resource "aws_vpc_dhcp_options_association" "mpg" {
-#   vpc_id                = aws_vpc.ipg.id
-#   dhcp_options_id       = aws_vpc_dhcp_options.ipg_dhcp.id
-# }

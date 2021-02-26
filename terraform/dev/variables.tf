@@ -44,21 +44,6 @@ variable "subnet_identifiers" {
   default     = ["a", "b", "c"]
 }
 
-// variable "peers" {
-//   description = "List of Maps"
-//   type        = "list"
-//   default     = []
-// }
-
-
-###########################################################################################################
-# variables from module - eip
-###########################################################################################################
-
-// variable "az_count_v" {
-//     default = 2
-// }
-
 
 ###########################################################################################################
 # variables from module - sg
@@ -75,9 +60,6 @@ variable "dbsg_tag" {
 variable "myip" {
     default = "66.222.146.176/32"
 }
-
-#variable "vpc_id_virginia" {}
-#variable "vpc_id_ireland" {}
 
 
 ###########################################################################################################
@@ -99,64 +81,3 @@ variable "instance_type_virginia" {
 variable "instance_type_ireland" {
     default = "t2.micro"
 }
-
-
-#variable "web_sg" {}
-#variable "db_sg" {}
-#variable "pri_subnet_virginia" {}
-#variable "pri_subnet_ireland" {}
-
-
-###########################################################################################################
-# variables for peering vpc information
-###########################################################################################################
-
-
-// variable "peers" {
-//    description   = "List of Maps"
-//   # type        = list(map(string))
-//    type          = "list"
-//    default       = [{
-//  #    name        = "databases"
-//      region      = {}
-//  #    owner       = "123456789"
-//      vpc         = {}
-//      ip_range    = {}
-//      auto_accept = "true"
-//      side        = "Requestor"
-//    },
-//    {
-//  #    name        = "databases"
-//      region      = {}
-//  #    owner       = "123456789"
-//      vpc         = {}
-//      ip_range    = {}
-//      auto_accept = "true"
-//      side        = "Requestor"
-//    }]
-//  }   
-                  
-                  
-                  
-                  
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

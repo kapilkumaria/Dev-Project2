@@ -23,7 +23,6 @@ resource "aws_instance" "ec2_virginia" {
     vpc_security_group_ids     = [var.web_sg]
     subnet_id                  = var.pri_subnet_virginia
     iam_instance_profile       = var.instance_profile
-    #user_data                  = file("ssm-agent-install.sh")
  
     tags = {
         Name                   = "server-virginia"
@@ -38,7 +37,6 @@ resource "aws_instance" "ec2_ireland" {
     vpc_security_group_ids     = [var.db_sg]
     subnet_id                  = var.pri_subnet_ireland
     iam_instance_profile       = var.instance_profile
-    #user_data                  = file("ssm-agent-install.sh")
 
     tags = {
         Name                   = "server-ireland"

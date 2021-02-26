@@ -47,33 +47,3 @@ variable "subnet_identifiers" {
 
 variable "elastic_ip_v" {}
 variable "elastic_ip_i" {}
-
-
-// variable "peers" {
-//   description   = "List of Maps"
-//   type          = "list"
-//   default       = [{
-//     name        = "databases"
-//     region      = "eu-west-1"
-//     owner       = "123456789"
-//     vpc         = {}
-//     ip_range    = {}
-//     auto_accept = "true"
-//     side        = "Requestor"
-//   },
-//   {
-//     name        = "databases"
-//     region      = "eu-west-2"
-//     owner       = "123456789"
-//     vpc         = {}
-//     ip_range    = {}
-//     auto_accept = "true"
-//     side        = "Requestor"
-//   }]
-// }
-
-
-# variable "peers" {
-#   description = "Number of subnets / Availability zones to use"
-#   default     = "2"
-# }

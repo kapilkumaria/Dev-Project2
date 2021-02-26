@@ -24,14 +24,6 @@ resource "aws_security_group" "websg" {
   description = "Allow ssh connection only"
   vpc_id      = var.vpc_id_virginia
 
-  // ingress {
-  //   description = "Allowing HTTP traffic on port 80"
-  //   from_port   = 80
-  //   to_port     = 80
-  //   protocol    = "tcp"
-  //   cidr_blocks = var.myip
-  // }
-
   ingress {
     description = "Allowing ICMP traffic from 2nd vpc"
     from_port   = "-1"
@@ -68,14 +60,6 @@ resource "aws_security_group" "dbsg" {
   name        = "allow_ssh_traffic"
   description = "Allow ssh connection only"
   vpc_id      = var.vpc_id_ireland
-
-  // ingress {
-  //   description = "Allowing HTTP traffic on port 80"
-  //   from_port   = 80
-  //   to_port     = 80
-  //   protocol    = "tcp"
-  //   cidr_blocks = var.myip
-  // }
 
   ingress {
     description = "Allowing SSH connection from my computer"
