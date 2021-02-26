@@ -35,6 +35,8 @@ module "sg" {
     websg_tag           = var.websg_tag
     dbsg_tag            = var.dbsg_tag
     myip                = var.myip
+    icmp_conn_v         = module.vpc.vpc_cidr_ireland
+    icmp_conn_i         = module.vpc.vpc_cidr_virginia
     vpc_id_virginia     = module.vpc.vpc_id_virginia
     vpc_id_ireland      = module.vpc.vpc_id_ireland
 }

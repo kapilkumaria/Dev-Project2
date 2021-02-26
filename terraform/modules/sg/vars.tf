@@ -15,3 +15,5 @@ variable "myip" {
 
 variable "vpc_id_virginia" {}
 variable "vpc_id_ireland" {}
+variable "icmp_conn_v" {}
+variable "icmp_conn_i" {}

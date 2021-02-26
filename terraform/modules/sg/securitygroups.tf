@@ -33,6 +33,14 @@ resource "aws_security_group" "websg" {
   // }
 
   ingress {
+    description = "Allowing ICMP traffic from 2nd vpc"
+    from_port   = "-1"
+    to_port     = "-1"
+    protocol    = "icmp"
+    cidr_blocks = [var.icmp_conn_v]
+  }
+
+  ingress {
     description = "Allowing SSH connection from my computer"
     from_port   = 22
     to_port     = 22
@@ -76,6 +84,15 @@ resource "aws_security_group" "dbsg" {
     protocol    = "tcp"
     cidr_blocks = [var.myip]
   }
+
+  ingress {
+    description = "Allowing ICMP traffic from 1st vpc"
+    from_port   = "-1"
+    to_port     = "-1"
+    protocol    = "icmp"
+    cidr_blocks = [var.icmp_conn_i]
+  }
+
 
   egress {
     from_port   = 0
