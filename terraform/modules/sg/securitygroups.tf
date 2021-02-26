@@ -32,14 +32,7 @@ resource "aws_security_group" "websg" {
     cidr_blocks = [var.icmp_conn_v]
   }
 
-  ingress {
-    description = "Allowing SSH connection from my computer"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.myip]
-  }
-
+  
   egress {
     from_port   = 0
     to_port     = 0
@@ -61,13 +54,6 @@ resource "aws_security_group" "dbsg" {
   description = "Allow ssh connection only"
   vpc_id      = var.vpc_id_ireland
 
-  ingress {
-    description = "Allowing SSH connection from my computer"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.myip]
-  }
 
   ingress {
     description = "Allowing ICMP traffic from 1st vpc"
