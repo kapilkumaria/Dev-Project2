@@ -23,7 +23,7 @@ resource "aws_vpc" "vpg" {
 }
 
 resource "aws_vpc" "ipg" {
-  provider             = "aws.ireland"
+  provider             = aws.ireland
   cidr_block           = "192.${var.subnet_second_octet}.${var.subnet_third_octet}.0/20"
   enable_dns_hostnames = true
   enable_dns_support   = true
@@ -67,7 +67,7 @@ resource "aws_nat_gateway" "nat_gateway_v" {
 }
 
 resource "aws_nat_gateway" "nat_gateway_i" {
-  provider        = "aws.ireland"
+  provider        = aws.ireland
   allocation_id   = var.elastic_ip_i
   subnet_id       = aws_subnet.utility-subnet_i.id
 }
@@ -88,7 +88,7 @@ resource "aws_subnet" "private-subnet_v" {
     )
 
   lifecycle {
-    ignore_changes = ["tags"]
+    ignore_changes = [tags]
   }
 }
 
@@ -104,7 +104,7 @@ resource "aws_subnet" "utility-subnet_v" {
     )
 
   lifecycle {
-    ignore_changes = ["tags"]
+    ignore_changes = [tags]
   }
 }
 
@@ -115,7 +115,7 @@ resource "aws_subnet" "utility-subnet_v" {
 
 
 resource "aws_subnet" "private-subnet_i" {
-  provider          = "aws.ireland"
+  provider          = aws.ireland
   vpc_id            = aws_vpc.ipg.id
   cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet}.0/23"
   availability_zone = "${var.region_i}${var.subnet_identifiers[0]}"
@@ -125,13 +125,13 @@ resource "aws_subnet" "private-subnet_i" {
     )
 
   lifecycle {
-    ignore_changes = ["tags"]
+    ignore_changes = [tags]
   }
 }
 
 
 resource "aws_subnet" "utility-subnet_i" {
-  provider          = "aws.ireland"
+  provider          = aws.ireland
   vpc_id            = aws_vpc.ipg.id
   cidr_block        = "192.${var.subnet_second_octet}.${var.subnet_third_octet + 14}.0/27"
   availability_zone = "${var.region_i}${var.subnet_identifiers[0]}"
@@ -141,7 +141,7 @@ resource "aws_subnet" "utility-subnet_i" {
     )
 
   lifecycle {
-    ignore_changes = ["tags"]
+    ignore_changes = [tags]
   }
 }
 
@@ -215,7 +215,7 @@ resource "aws_route_table_association" "private-subnet-rt-association_v" {
 # creating private route table
 
 resource "aws_route_table" "private-subnet-route-table_i" {
-  provider               = "aws.ireland"
+  provider               = aws.ireland
   vpc_id                 = aws_vpc.ipg.id
 }
 
@@ -223,7 +223,7 @@ resource "aws_route_table" "private-subnet-route-table_i" {
 # Creating routes and adding them to private route table
 
 resource "aws_route" "private-subnet-default_route_i" {
-  provider               = "aws.ireland"
+  provider               = aws.ireland
   route_table_id         = aws_route_table.private-subnet-route-table_i.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway_i.id
@@ -235,7 +235,7 @@ resource "aws_route" "private-subnet-default_route_i" {
 # subnets assosciation with private route tables
 
 resource "aws_route_table_association" "private-subnet-rt-association_i" {
-  provider               = "aws.ireland"
+  provider               = aws.ireland
   subnet_id              = aws_subnet.private-subnet_i.id
   route_table_id         = aws_route_table.private-subnet-route-table_i.id
 }

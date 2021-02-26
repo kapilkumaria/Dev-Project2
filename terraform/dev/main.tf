@@ -52,7 +52,7 @@ module "ec2" {
     db_sg                   = module.sg.db_sg_id
     pri_subnet_virginia     = module.vpc.subnet_ids_private_virginia[0]
     pri_subnet_ireland      = module.vpc.subnet_ids_private_ireland
-    instance_profile        = module.iam.ec2_profile
+    instance_profile        = module.iam.ec2_profile_name
 }
 
 module "iam" {

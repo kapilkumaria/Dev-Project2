@@ -64,7 +64,7 @@ resource "aws_security_group" "websg" {
 # Creating a security group for private server in ireland
 
 resource "aws_security_group" "dbsg" {
-  provider    = "aws.ireland"
+  provider    = aws.ireland
   name        = "allow_ssh_traffic"
   description = "Allow ssh connection only"
   vpc_id      = var.vpc_id_ireland

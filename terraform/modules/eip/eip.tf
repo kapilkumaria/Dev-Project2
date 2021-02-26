@@ -24,7 +24,7 @@ resource "aws_eip" "elastic_ip_v" {
 
 
 resource "aws_eip" "elastic_ip_i" {
-  provider  = "aws.ireland"
+  provider  = aws.ireland
   vpc       = true
 }
 

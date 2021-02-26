@@ -36,7 +36,7 @@ resource "aws_vpc_peering_connection" "peers_connections" {
 # Accepter's side of the connection
 
 resource "aws_vpc_peering_connection_accepter" "peer1" {
-  provider                  = "aws.ireland"
+  provider                  = aws.ireland
   vpc_peering_connection_id = aws_vpc_peering_connection.peers_connections.id
   auto_accept               = true
 
@@ -72,7 +72,7 @@ resource "aws_route" "peers1" {
 
 
 resource "aws_route" "peers2" {
-  provider                  = "aws.ireland"
+  provider                  = aws.ireland
   #count                     = "${ length(var.peers) }"
   route_table_id            = aws_route_table.private-subnet-route-table_i.id
   destination_cidr_block    = aws_vpc.vpg.cidr_block

@@ -32,7 +32,7 @@ resource "aws_instance" "ec2_virginia" {
 
 
 resource "aws_instance" "ec2_ireland" {
-    provider                   = "aws.ireland"
+    provider                   = aws.ireland
     ami                        = var.ami_ireland
     instance_type              = var.instance_type_ireland
     vpc_security_group_ids     = [var.db_sg]
